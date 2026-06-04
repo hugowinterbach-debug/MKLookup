@@ -148,12 +148,25 @@ function init() {
 }
 
 document.addEventListener('DOMContentLoaded', init);
-// Auto-detect system dark mode
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.add('dark');
+// Load saved preference
+const saved = localStorage.getItem("darkMode");
+
+if (saved === "true") {
+    document.body.classList.add("dark");
+} 
+else if (saved === "false") {
+    document.body.classList.remove("dark");
+} 
+else {
+    // Auto-detect if no preference saved
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
 }
 
-// Manual toggle
+// Toggle + save
 document.getElementById('darkToggle').addEventListener('click', () => {
     document.body.classList.toggle('dark');
+    localStorage.setItem("darkMode", document.body.classList.contains("dark"));
 });
+
