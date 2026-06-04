@@ -69,28 +69,25 @@
       max-height: calc(100vh - 200px);
       overflow-y: auto;
     }
-    .member-item {
-      border-bottom: 1px solid #eee;
-      padding: 8px 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .member-item:last-child {
-      border-bottom: none;
-    }
-    .member-name {
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .pin {
-      font-family: monospace;
-      font-size: 14px;
-      background: #f0f0f0;
-      padding: 4px 8px;
-      border-radius: 4px;
-      min-width: 60px;
-      text-align: center;
+.member-item {
+    display: block;
+    padding: 10px;
+    margin: 8px 0;
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+.member-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.member-pin {
+    margin-top: 4px;
+    font-size: 1rem;
+    color: #444;
+}
+
     }
     .empty {
       font-size: 13px;
@@ -105,7 +102,14 @@ body.dark {
 }
 
 body.dark header {
-  background: #1e1e1e;
+  background: #1e1e1e;body.dark .member-item {
+    background: rgba(255,255,255,0.1);
+}
+
+body.dark .member-pin {
+    color: #cccccc;
+}
+
   color: #ffffff;
 }
 
