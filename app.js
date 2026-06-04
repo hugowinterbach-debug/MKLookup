@@ -37,22 +37,23 @@ function renderList(filter = '') {
     return;
   }
 
-  filtered.forEach(m => {
+filtered.forEach(m => {
     const li = document.createElement('li');
     li.className = 'member-item';
 
-    const nameSpan = document.createElement('span');
-    nameSpan.className = 'member-name';
-    nameSpan.textContent = m.name;
+    const nameDiv = document.createElement('div');
+    nameDiv.className = 'member-name';
+    nameDiv.textContent = m.name;
 
-    const pinSpan = document.createElement('span');
-    pinSpan.className = 'pin';
-    pinSpan.textContent = m.pin;
+    const pinDiv = document.createElement('div');
+    pinDiv.className = 'member-pin';
+    pinDiv.textContent = "PIN: " + m.pin;
 
-    li.appendChild(nameSpan);
-    li.appendChild(pinSpan);
+    li.appendChild(nameDiv);
+    li.appendChild(pinDiv);
     memberListEl.appendChild(li);
-  });
+});
+
 }
 
 function saveToCache(data) {
