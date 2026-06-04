@@ -42,12 +42,4 @@ self.addEventListener('fetch', event => {
     caches.match(event.request).then(resp => resp || fetch(event.request))
   );
 });
-// Auto-detect system dark mode
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.body.classList.add('dark');
-}
 
-// Manual toggle
-document.getElementById('darkToggle').addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-});
