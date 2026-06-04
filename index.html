@@ -99,7 +99,7 @@
       text-align: center;
     }
   </style>
-  <style>
+<style>
   body {
     background: #ffffff;
     color: #000000;
@@ -122,8 +122,22 @@
     border-radius: 6px;
     cursor: pointer;
     z-index: 999;
+    font-size: 14px;
+  }
+
+  /* Optional: style your member cards in dark mode */
+  .member {
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 6px;
+    background: rgba(0,0,0,0.05);
+  }
+
+  body.dark .member {
+    background: rgba(255,255,255,0.1);
   }
 </style>
+
 
 </head>
 <body>
