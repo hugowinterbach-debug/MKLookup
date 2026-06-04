@@ -99,8 +99,35 @@
       text-align: center;
     }
   </style>
+  <style>
+  body {
+    background: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  body.dark {
+    background: #121212;
+    color: #ffffff;
+  }
+
+  .toggle-dark {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 6px 12px;
+    background: #444;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 999;
+  }
+</style>
+
 </head>
 <body>
+  <div class="toggle-dark" id="darkToggle">Dark</div>
   <header>
     <h1>MKLookup</h1>
     <button id="refreshBtn">Refresh list</button>
