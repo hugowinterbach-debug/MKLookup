@@ -18,9 +18,17 @@ themeToggle.addEventListener("click", () => {
 });
 
 // Fetch members.json
-async function fetchMembers() {
+async function fetchMembers(isManualRefresh = false) {
     try {
+        // If user explicitly clicked refresh, clear localStorage first
+        if (isManualRefresh) {
+            localStorage.removeItem("members");
+        }
+
+        // Fetch with a unique timestamp to completely bypass browser server caching
         const res = await fetch("members.json?cache=" + Date.now());
+        if (!res.ok) throw new Error("Network response was not OK");
+        
         members = await res.json();
         localStorage.setItem("members", JSON.stringify(members));
         renderList();
@@ -30,6 +38,8 @@ async function fetchMembers() {
         if (saved) {
             members = JSON.parse(saved);
             renderList();
+        } else {
+            memberListEl.innerHTML = "<li class='member-item'>Failed to load member data.</li>";
         }
     }
 }
@@ -42,6 +52,11 @@ function renderList() {
     );
 
     memberListEl.innerHTML = "";
+
+    if (filtered.length === 0) {
+        memberListEl.innerHTML = "<li class='member-item'>No matching members found.</li>";
+        return;
+    }
 
     filtered.forEach(m => {
         const li = document.createElement("li");
@@ -64,10 +79,11 @@ function renderList() {
 // Search listener
 searchEl.addEventListener("input", renderList);
 
-// Refresh button
-refreshBtn.addEventListener("click", fetchMembers);
+// Refresh button - Pass true to indicate an intentional manual update
+refreshBtn.addEventListener("click", () => {
+    fetchMembers(true);
+});
 
 // Load on startup
-fetchMembers();
-
+fetchMembers(false);
 
